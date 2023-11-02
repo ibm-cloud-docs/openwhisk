@@ -2,7 +2,7 @@
 
 copyright:
   years: 2023, 2023
-lastupdated: "2023-10-26"
+lastupdated: "2023-11-02"
 
 keywords: functions
 
@@ -26,7 +26,7 @@ subcollection: openwhisk
 ## Why are we making this change?
 {: #dep-over-why}
   
-With the successful release and adoption of [{{site.data.keyword.codeenginefull}}](/docs/codeengine) in 2021, IBM created its next generation serverless compute platform. Functions is based on the Apache OpenWhisk project and is limited in its ability to support a varied set of non-transactional, stateless workloads. {{site.data.keyword.codeengineshort}} runs the same kind of workloads as Functions and ,in addition, supports the following enhanced capabilities.
+With the successful release and adoption of [{{site.data.keyword.codeenginefull}}](/docs/codeengine) in 2021, IBM created its next generation serverless compute platform. Functions is based on the Apache OpenWhisk project and is limited in its ability to support a varied set of non-transactional, stateless workloads. {{site.data.keyword.codeengineshort}} runs the same kind of workloads as Functions and, in addition, supports the following enhanced capabilities.
   
 - Support for the latest generation of VPC networking
 - Choice of public/internet-facing workloads or private ones
@@ -47,7 +47,7 @@ Clients will need to migrate their Functions actions and triggers over to {{site
   
 IBM Cloud for Education is withdrawn from marketing effective immediately. The service is deprecated in the {{site.data.keyword.cloud}} catalog, and no new orders or renewals are possible. Customers with existing deployments will still be able to use them through November 30th, 2023, or the expiry of their {{site.data.keyword.cloud}} order, whichever is first.
 
-{{site.data.keyword.openwhisk_short}} will be withdrawn from marketing effective December 28, 2023. The service will be deprecated in the {{site.data.keyword.cloud}} catalog and at this time, no new orders will be taken. {{site.data.keyword.openwhisk_short}} will remains up and running for existing clients, but no new instances can be created.
+{{site.data.keyword.openwhisk_short}} will be withdrawn from marketing effective December 28, 2023. The service will be deprecated in the {{site.data.keyword.cloud}} catalog and at this time, no new orders will be taken. {{site.data.keyword.openwhisk_short}} will remains up and running for existing clients, but no new entities can be created.
   
 Formal end of support for {{site.data.keyword.openwhisk}} will be in June, 2024. This is the last date {{site.data.keyword.cloud}} will deliver standard support, imaging, or reload services for a specific version or release.
   
@@ -55,10 +55,10 @@ Formal end of support for {{site.data.keyword.openwhisk}} will be in June, 2024.
   
 | Stage | Date | Description |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| Deprecation announcement | 26 October 2023  | Announcement of the {{site.data.keyword.openwhisk_short}} deprecation. Existing instances will continue to run. |
-| End of marketing | 28 December 2023 | No new instances of {{site.data.keyword.openwhisk_short}} can be created or purchased. Existing instances will continue to run. |
-| End of support   | June 2024 | You can continue to use any existing instances of {{site.data.keyword.openwhisk_short}}, but support is no longer available.  |
-| End of life | October 2024   | Running instances of {{site.data.keyword.openwhisk_short}} are permanently disabled and deprovisioned. |
+| Deprecation announcement | 26 October 2023  | Announcement of the {{site.data.keyword.openwhisk_short}} deprecation. Existing entities will continue to run. |
+| End of marketing | 28 December 2023 | No new entities of {{site.data.keyword.openwhisk_short}} can be created or purchased. Existing entities will continue to run. |
+| End of support   | June 2024 | You can continue to use any existing entities of {{site.data.keyword.openwhisk_short}}, but support is no longer available.  |
+| End of life | October 2024   | Running entities of {{site.data.keyword.openwhisk_short}} are permanently disabled and deprovisioned. |
 {: caption="Table 1. Deprecation timeline" caption-side="bottom"}
 
 ## What if I'm still working with the service?
