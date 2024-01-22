@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2023
-lastupdated: "2023-11-01"
+  years: 2019, 2024
+lastupdated: "2024-01-22"
 
 keywords: cli, functions, changelog, change log, updates, fixes
 
@@ -24,7 +24,9 @@ A historical record of versions that show highlights and bug fixes for {{site.da
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
-| 1.0.74 | October 2023 | Extended `ibmcloud fn namespace target` and `ibmcloud fn property set --namespace` commands to allow to target not only IAM-enabled namespaces, but also Cloud Foundry-based namespaces. |
+| 1.0.79 | 20 January 2024| - Fixed a bug in `service bind` command (which fails for IAM-based namespaces in version 1.0.78). \n - The `namespace list` command by default now returns up to 100 rows instead of 30, to align with the API. |
+| 1.0.78 | 15 December 2023| Added plugin support for `darwin-arm64` and `linux-arm64` architecture. |
+| 1.0.75 | October 2023 | Extended `ibmcloud fn namespace target` and `ibmcloud fn property set --namespace` commands to allow to target not only IAM-enabled namespaces, but also Cloud Foundry-based namespaces. |
 | 1.0.60 | 09 September 2022| Removed `fn api` commands. |
 | 1.0.54 | 09 April 2021 |  - Fixed the token expiration issue by increasing the frequency of refreshing IAM token.  |
 | 1.0.53 | 26 March 2021 |  - Explicitly display namespace names with **`ibmcloud fn list`** command. |
