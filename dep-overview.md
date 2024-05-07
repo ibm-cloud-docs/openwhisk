@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2023, 2023
-lastupdated: "2023-11-02"
+  years: 2023, 2024
+lastupdated: "2024-05-07"
 
 keywords: functions
 
@@ -68,7 +68,7 @@ Clients are encourages to migrate their Functions actions and triggers to {{site
 
 See the following topics for documentation about migrating from {{site.data.keyword.openwhisk}} to {{site.data.keyword.codeengineshort}}. 
 
-- [Migrating Cloud Functions Code to Code Engine](https://www.ibm.com/blog/migrating-cloud-functions-code-to-code-engine){: external}
+- [How to move from IBM Cloud Functions to IBM Code Engine](https://www.ibm.com/blog/how-to-move-from-ibm-cloud-functions-to-ibm-code-engine){: external}
 - [Migrating IBM Cloud Functions to Code Engine](/docs/codeengine?topic=codeengine-fun-migrate).
   
 IBM representatives are reaching out to help customers plan for this change and decide on the best course of action. If you are a current {{site.data.keyword.openwhisk}} customer and have not heard from IBM, reach out to your account representative or contact [IBM Cloud Support](https://iam.bluemix.net/identity/mirror?state=initiating_transaction_id_djU0OHg-a5e8453733154995b0fabc7acac407e0){: external}.
