@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-02"
+  years: 2017, 2024
+lastupdated: "2024-05-22"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -61,7 +61,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 ## What is FaaS (Function-as-a-Service)?
 {: #sitemap_what-is-faas-function-as-a-service}
 
-[What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas){: external}
+[What is FaaS (Function-as-a-Service)?](https://www.ibm.com/topics/faas){: external}
 
 
 ## About
