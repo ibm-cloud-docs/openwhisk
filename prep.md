@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-01"
+  years: 2017, 2024
+lastupdated: "2024-05-22"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, PHP
 
@@ -969,7 +969,7 @@ Package the app in a custom Docker image by completing the following steps.
     ```
     {: pre}
 
-2. Create a [Dockerfile ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.docker.com/engine/reference/builder/) in your `functions` directory.
+2. Create a [Dockerfile ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.docker.com/reference/dockerfile/) in your `functions` directory.
 
     ```bash
     touch Dockerfile
