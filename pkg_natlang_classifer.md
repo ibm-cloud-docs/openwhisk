@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-01"
+  years: 2017, 2024
+lastupdated: "2024-05-21"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -29,13 +29,13 @@ The {{site.data.keyword.nlclassifiershort}} package contains the following entit
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`natural-language-classifier-v1`](https://cloud.ibm.com/apidocs/natural-language-classifier){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.nlclassifiershort}} service. |
-| [`classify`](https://cloud.ibm.com/apidocs/natural-language-classifier#classify-a-phrase){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `text`,  | Classify a phrase. |
-| [`classify-collection`](https://cloud.ibm.com/apidocs/natural-language-classifier#classify-multiple-phrases){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `collection` | Classify multiple phrases. |
-| [`create-classifier`](https://cloud.ibm.com/apidocs/natural-language-classifier#create-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `metadata`, `training_data` | Create a classifier. |
-| [`delete-classifier`](https://cloud.ibm.com/apidocs/natural-language-classifier#delete-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Delete a classifier. |
-| [`get-classifier`](https://cloud.ibm.com/apidocs/natural-language-classifier#get-information-about-a-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Get information about a classifier. |
-| [`list-classifiers`](https://cloud.ibm.com/apidocs/natural-language-classifier#list-classifiers){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List classifiers. |
+| `natural-language-classifier-v1` | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.nlclassifiershort}} service. |
+| `classify` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `text`,  | Classify a phrase. |
+| `classify-collection` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `collection` | Classify multiple phrases. |
+| `create-classifier` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `metadata`, `training_data` | Create a classifier. |
+| `delete-classifier` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Delete a classifier. |
+| `get-classifier` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Get information about a classifier. |
+| `list-classifiers` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List classifiers. |
 {: caption="Table 1. {{site.data.keyword.nlclassifiershort}} package entities" caption-side="bottom"}
 
 ## Creating a {{site.data.keyword.nlclassifiershort}} service instance

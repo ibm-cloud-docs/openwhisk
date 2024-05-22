@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-01"
+  years: 2017, 2024
+lastupdated: "2024-05-21"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -78,7 +78,7 @@ Your Cloud Foundry-based namespaces still work. However, to take advantage of ne
 
 You can target a Cloud Foundry-based namespace or IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or `ibmlcoud fn namespace target <namespace_name_or_ID>`.
 
-As a result of the [Cloud Foundry service deprecation](/docs/cloud-foundry-public?topic=cloud-foundry-public-deprecation), Cloud Foundry-based namespaces in {{site.data.keyword.openwhisk_short}} are deprecated and will stop working on Oct 31st, 2023. If you are still using Cloud-Foundry-based namespaces, [migrate your namespace to an IAM namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace) to ensure that your Cloud Function workloads continue to run.
+As a result of the Cloud Foundry service deprecation, Cloud Foundry-based namespaces in {{site.data.keyword.openwhisk_short}} are deprecated and will stop working on Oct 31st, 2023. If you are still using Cloud-Foundry-based namespaces, [migrate your namespace to an IAM namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace) to ensure that your Cloud Function workloads continue to run.
 {: deprecated}
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?

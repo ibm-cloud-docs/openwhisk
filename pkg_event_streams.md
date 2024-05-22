@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-01"
+  years: 2017, 2024
+lastupdated: "2024-05-21"
 
 keywords: event streams, package, messages, events, functions, trigger
 
@@ -44,7 +44,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.clo
 
 Before you begin
 
-You must have an instance of {{site.data.keyword.messagehub}}. To create an instance, see [Event Streams documentation](/docs/EventStreams?topic=EventStreams-getting-started).
+You must have an instance of {{site.data.keyword.messagehub}}. To create an instance, see [Event Streams documentation](/docs/EventStreams).
 
 1. Create a `/whisk.system/messaging` package binding that is configured for your {{site.data.keyword.messagehub}} account. In this example, the package name is `MyEventStreamBind`.
 

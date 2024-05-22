@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2023
-lastupdated: "2023-11-01"
+  years: 2017, 2024
+lastupdated: "2024-05-21"
 
 keywords: slack package, token-based, api, functions, slack, action, package
 
@@ -49,7 +49,7 @@ The `/whisk.system/slack/post` action posts a message to a specified Slack chann
 
 The following example shows how to configure Slack, create a package binding, and post a message to a channel.
 
-1. Configure a Slack [incoming webhook](https://api.slack.com/incoming-webhooks){: external} for your team.
+1. Configure a Slack [incoming webhook](https://api.slack.com/messaging/webhooks){: external} for your team.
 
     After Slack is configured, you get a webhook URL that looks like `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. The webhook is needed in the next step.
 
