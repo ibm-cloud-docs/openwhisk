@@ -6,7 +6,7 @@ toc:
     audience: service
     href: /docs/openwhisk
     console-page: /functions
-    product-page: https://www.ibm.com/cloud/functions
+    product-page: https://www.ibm.com/products/code-engine
     path: openwhisk
     label: Functions
     release-level: deprecated
