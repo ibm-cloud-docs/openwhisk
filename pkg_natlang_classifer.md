@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2024
-lastupdated: "2024-05-21"
+lastupdated: "2024-05-22"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -44,7 +44,7 @@ The {{site.data.keyword.nlclassifiershort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.nlclassifiershort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.nlclassifiershort}} service instance](https://cloud.ibm.com/catalog/services/natural_language_classifier){: external}.
+1. Create a {{site.data.keyword.nlclassifiershort}} service instance.
 2. When the service instance is created, service credentials are automatically created for you.
 
 ## Installing the {{site.data.keyword.nlclassifiershort}} package
